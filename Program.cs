@@ -24,7 +24,7 @@ namespace Tubes2Stima
         // Main program (tester)
         static void Main(string[] args)
         {
-            map = new Graph("test1.txt");
+            map = new Graph("test100000.txt");
             map.print();
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
@@ -37,15 +37,6 @@ namespace Tubes2Stima
             List<int> further = new List<int>();
 
             recurseSolve(1,6,ref found,map,ref result);
-            // Console.WriteLine(found);
-            // if (!found)
-            // {
-            //     Console.WriteLine("NOOOOO!!!!");
-            // }
-            // else
-            // {
-            //     Console.WriteLine("YESSSS!!!!");
-            // }
             
             Console.Write("Path : ");
             foreach (int item in result)
@@ -97,15 +88,33 @@ namespace Tubes2Stima
                 }
                 else if (quests.getMove(i) == 1) 
                 {
-                    List<int> fur = new List<int>();
-                    recursiveCont(quests.getFrom(i), map, ref fur);
+                    //List<int> fur = new List<int>();
+                    //recursiveCont(quests.getFrom(i), map, ref fur);
                     
-                    if(fur.Contains(quests.getTo(i)))
-                    {
-                        bool found3 = false;
-                        List<int> res = new List<int>();
-                        recurseSolve(quests.getFrom(i), quests.getTo(i), ref found3, map, ref res);
+                    // if(fur.Contains(quests.getTo(i)))
+                    // {
+                    //     bool found3 = false;
+                    //     List<int> res = new List<int>();
+                    //     recurseSolve(quests.getFrom(i), quests.getTo(i), ref found3, map, ref res);
 
+                    //     Console.WriteLine("{0} {1} {2}  YA", quests.getMove(i), quests.getTo(i), quests.getFrom(i));
+                    //     Console.Write("Path : ");
+                    //     for (int j = 0; j < res.Count; j++)
+                    //     {
+                    //         Console.Write(res[j] + " ");
+                    //     }
+                    //     Console.WriteLine();
+                    // }
+                    // else
+                    // {
+                    //     Console.WriteLine("{0} {1} {2}  TIDAK", quests.getMove(i), quests.getTo(i), quests.getFrom(i));
+                    // }
+
+                    bool found3 = false;
+                    List<int> res = new List<int>();
+                    recurseSolve(quests.getFrom(i), quests.getTo(i), ref found3, map, ref res);
+
+                    if(found3){
                         Console.WriteLine("{0} {1} {2}  YA", quests.getMove(i), quests.getTo(i), quests.getFrom(i));
                         Console.Write("Path : ");
                         for (int j = 0; j < res.Count; j++)
@@ -113,9 +122,7 @@ namespace Tubes2Stima
                             Console.Write(res[j] + " ");
                         }
                         Console.WriteLine();
-                    }
-                    else
-                    {
+                    }else{
                         Console.WriteLine("{0} {1} {2}  TIDAK", quests.getMove(i), quests.getTo(i), quests.getFrom(i));
                     }
                 }
