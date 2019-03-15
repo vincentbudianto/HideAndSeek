@@ -29,7 +29,7 @@ namespace Prototype1
         private Query quest;
         private Driver solver;
         public Boolean B1, B2;
-        private object OpenFileDialog;
+        public String dirGraph, dirExQuery;
 
         public MainWindow()
         {
@@ -41,7 +41,7 @@ namespace Prototype1
 
         private void Load_Graph_Click(object sender, RoutedEventArgs e)
         {
-            map = new Graf("../../" + Graph_Text.Text);
+            map = new Graf(dirGraph);
             MessageBox.Show("Graph built!");
 
             Msagl.Graph graph = new Msagl.Graph("graph");
@@ -68,7 +68,7 @@ namespace Prototype1
             }
 
             B1 = true;
-            quests = new ExQuery("../../" + ExQuery_Text.Text);
+            quests = new ExQuery(dirExQuery);
 
             Result.Content += quests.getNum() + "\n";
 
@@ -116,18 +116,20 @@ namespace Prototype1
 
         private void Open_Graph_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true) { 
-                 Graph_Text.Text = File.ReadAllText(openFileDialog.FileName);
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            if (openFileDialog1.ShowDialog() == true) {
+                dirGraph = openFileDialog1.FileName;
+                Graph_Text.Text = System.IO.Path.GetFileName(dirGraph);
             }
         }
 
         private void Open_Query_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
+            OpenFileDialog openFileDialog2 = new OpenFileDialog();
+            if (openFileDialog2.ShowDialog() == true)
             {
-                ExQuery_Text.Text = File.ReadAllText(openFileDialog.FileName);
+                dirExQuery = openFileDialog2.FileName;
+                ExQuery_Text.Text = System.IO.Path.GetFileName(dirExQuery);
             }
         }
 
