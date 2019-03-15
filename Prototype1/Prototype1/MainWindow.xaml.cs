@@ -25,9 +25,12 @@ namespace Prototype1
         private ExQuery quests;
         private Query quest;
         private Driver solver;
-
+        public Boolean B1, B2;
+        
         public MainWindow()
         {
+            B1 = false;
+            B2 = false;
             InitializeComponent();
             solver = new Driver();
         }
@@ -40,16 +43,69 @@ namespace Prototype1
 
         private void Load_Query_Click(object sender, RoutedEventArgs e)
         {
+            if (B2)
+            {
+                Result.Content = "";
+                B2 = false;
+            }
+
+            B1 = true;
             quests = new ExQuery("../../" + ExQuery_Text.Text);
-            MessageBox.Show("Query File read!");
+            
+            Result.Content += quests.getNum() + "\n";
 
-
+            for (int i = 0; i < quests.getNum(); i++)
+            {
+                if (quests.getMove(i) == 0)
+                {
+                    bool found2 = false;
+                    List<int> res = new List<int>();
+                    solver.recurseSolve(1, quests.getFrom(i), ref found2, map, ref res);
+                    if (!res.Contains(quests.getTo(i)))
+                    {
+                        String ans = quests.getMove(i) + " " + quests.getTo(i) + " " + quests.getFrom(i) + "   TIDAK\n";
+                        Result.Content += ans;
+                    }
+                    else
+                    {
+                        String ans = quests.getMove(i) + " " + quests.getTo(i) + " " + quests.getFrom(i) + "   YA\n";
+                        Result.Content += ans;
+                    }
+                }
+                else if (quests.getMove(i) == 1) 
+                {
+                    bool found3 = false;
+                    List<int> res = new List<int>();
+                    solver.recurseSolve(quests.getFrom(i), quests.getTo(i), ref found3, map, ref res);
+  
+                    if(found3)
+                    {
+                        String ans = quests.getMove(i) + " " + quests.getTo(i) + " " + quests.getFrom(i) + "   YA\n";
+                        Result.Content += ans;
+                    }
+                    else
+                    {
+                        String ans = quests.getMove(i) + " " + quests.getTo(i) + " " + quests.getFrom(i) + "   TIDAK\n";
+                        Result.Content += ans;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid command");
+                }
+            }
         }
 
         private void Enter_Query_Click(object sender, RoutedEventArgs e)
         {
+            if (B1)
+            {
+                Result.Content = "";
+                B1 = false;
+            }
+
+            B2 = true;
             quest = new Query(Query_Text.Text);
-            MessageBox.Show("Query Console read!");
 
             if (quest.getMove() == 0)
             {
@@ -65,14 +121,6 @@ namespace Prototype1
                 {
                     String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   YA\n";
                     Result.Content = ans + Result.Content;
-                    /*Console.Write("Path : ");
-                    int j = res.Count - 1;
-                    while(res[j] != quest.getTo())
-                    {
-                        Console.Write(res[j] + " ");
-                        j--;
-                    }
-                    Console.WriteLine(res[j]);*/
                 }
             }
             else if (quest.getMove() == 1) 
@@ -84,12 +132,12 @@ namespace Prototype1
   
                 if(found3){
                     String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   YA\n";
-                    Result.Content += ans;
+                    Result.Content = ans + Result.Content;
                 }
                 else
                 {
                     String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   TIDAK\n";
-                    Result.Content += ans;
+                    Result.Content = ans + Result.Content;
                 }
             }
             else
