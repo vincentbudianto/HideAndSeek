@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gv="clr-namespace:Microsoft.Msagl.GraphViewerGdi;assembly=Microsoft.Msagl.Graph"
         xmlns:local="clr-namespace:Prototype1"
+        xmlns:gv1="clr-namespace:Microsoft.Msagl.GraphViewerGdi;assembly=Microsoft.Msagl.GraphViewerGdi"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -12,13 +14,18 @@
         <Label x:Name="Label_2" Content="Load Query File" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Height="35" Width="148" FontSize="18" FontWeight="Bold"/>
         <Label x:Name="Label_3" Content="Insert Query" HorizontalAlignment="Left" Margin="10,202,0,0" VerticalAlignment="Top" Height="35" Width="148" FontSize="18" FontWeight="Bold"/>
         <Label x:Name="Label_4" Content="Result" HorizontalAlignment="Left" Margin="10,274,0,0" VerticalAlignment="Top" Height="35" Width="148" FontSize="18" FontWeight="Bold"/>
-        <Button x:Name="Load_Graph" Content="Load Graph" HorizontalAlignment="Left" Margin="220,111,0,0" VerticalAlignment="Top" Width="75" Click="Load_Graph_Click"/>
-        <Button x:Name="Load_Query" Content="Load Query" HorizontalAlignment="Left" Margin="220,173,0,0" VerticalAlignment="Top" Width="75" Click="Load_Query_Click"/>
-        <Button x:Name="Enter_Query" Content="Enter Query" HorizontalAlignment="Left" Margin="220,237,0,0" VerticalAlignment="Top" Width="75" Click="Enter_Query_Click"/>
-        <TextBox x:Name="Graph_Text" HorizontalAlignment="Left" Height="23" Margin="10,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Text="test1.txt"/>
-        <TextBox x:Name="ExQuery_Text" HorizontalAlignment="Left" Height="23" Margin="10,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"/>
-        <TextBox x:Name="Query_Text" HorizontalAlignment="Left" Height="23" Margin="10,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Text="0 1 6"/>
         <ScrollViewer x:Name="Result" HorizontalAlignment="Left" Height="90" Margin="10,309,0,0" VerticalAlignment="Top" Width="190" FontWeight="Bold" VerticalScrollBarVisibility="Hidden"/>
+        <Button x:Name="Load_Graph" Content="Load Graph" HorizontalAlignment="Left" Margin="222,115,0,0" VerticalAlignment="Top" Width="75" Click="Load_Graph_Click"/>
+        <Button x:Name="Load_Query" Content="Load Query" HorizontalAlignment="Left" Margin="222,178,0,0" VerticalAlignment="Top" Width="75" Click="Load_Query_Click"/>
+        <Button x:Name="Enter_Query" Content="Enter Query" HorizontalAlignment="Left" Margin="220,237,0,0" VerticalAlignment="Top" Width="75" Click="Enter_Query_Click"/>
+        <TextBox x:Name="Graph_Text" HorizontalAlignment="Left" Height="23" Margin="16,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" Text="test1.txt"/>
+        <TextBox x:Name="ExQuery_Text" HorizontalAlignment="Left" Height="23" Margin="16,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
+        <TextBox x:Name="Query_Text" HorizontalAlignment="Left" Height="23" Margin="17,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Text="0 1 6"/>
+        <WindowsFormsHost Name="windowsFormsHost1" Margin="315,5,9.6,10">
+            <gv1:GViewer x:Name="gViewer"></gv1:GViewer>
+        </WindowsFormsHost>
+        <Button x:Name="Open_Graph" Content="Open File" HorizontalAlignment="Left" Margin="142,115,0,0" VerticalAlignment="Top" Width="75" Click="Open_Graph_Click"/>
+        <Button x:Name="Open_Query" Content="Open File" HorizontalAlignment="Left" Margin="142,178,0,0" VerticalAlignment="Top" Width="75" Click="Open_Query_Click"/>
 
     </Grid>
 </Window>

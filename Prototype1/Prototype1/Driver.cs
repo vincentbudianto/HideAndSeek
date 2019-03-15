@@ -18,7 +18,7 @@ namespace Prototype1
     class Driver
     {
         // 2 buah variabel utama
-        private Graph map;
+        private Graf map;
         private ExQuery queries;
 
 
@@ -146,7 +146,7 @@ namespace Prototype1
             return false;
         }
 
-        public void recurseSolve(int curr, int target, ref bool found, Graph path, ref List<int> result)
+        public void recurseSolve(int curr, int target, ref bool found, Graf path, ref List<int> result)
         {
             List<int> neighbor = path.getPath(curr);
 
@@ -176,7 +176,7 @@ namespace Prototype1
             }
         }
 
-        public void recursiveCont(int curr, Graph path, ref List<int> further){
+        public void recursiveCont(int curr, Graf path, ref List<int> further){
             List<int> neighbor = path.getPath(curr);
             further.Add(curr);
             further.Distinct().ToList();
