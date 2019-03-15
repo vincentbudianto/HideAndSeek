@@ -58,11 +58,13 @@ namespace Prototype1
                 solver.recurseSolve(1, quest.getFrom(), ref found2, map, ref res);
                 if (!res.Contains(quest.getTo()))
                 {
-                    Result.Content = "TIDAK";
+                    String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   TIDAK\n";
+                    Result.Content = ans + Result.Content;
                 }
                 else
                 {
-                    Result.Content = "YA";
+                    String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   YA\n";
+                    Result.Content = ans + Result.Content;
                     /*Console.Write("Path : ");
                     int j = res.Count - 1;
                     while(res[j] != quest.getTo())
@@ -81,16 +83,13 @@ namespace Prototype1
                 solver.recurseSolve(quest.getFrom(), quest.getTo(), ref found3, map, ref res);
   
                 if(found3){
-                    Result.Content = "YA";
-                    /*Console.Write("Path : ");
-                    for (int j = 0; j < res.Count; j++)
-                    {
-                        Console.Write(res[j] + " ");
-                    }
-                    Console.WriteLine();*/
+                    String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   YA\n";
+                    Result.Content += ans;
                 }
-                else{
-                    Result.Content = "TIDAK";
+                else
+                {
+                    String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   TIDAK\n";
+                    Result.Content += ans;
                 }
             }
             else
