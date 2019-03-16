@@ -29,7 +29,6 @@ namespace Prototype1
         private Graf map;
         private ExQuery quests;
         private Query quest;
-        private Driver solver;
         public Boolean B1, B2;
         public String dirGraph, dirExQuery;
         public Msagl.Graph graph = new Msagl.Graph("graph");
@@ -38,18 +37,29 @@ namespace Prototype1
         private int checker;
         private List<int> solution;
         private DispatcherTimer _timer;
+        private DispatcherTimer _timer2;
 
         public Boolean temp;
+
+        private int prev;
+        private int now;
 
         public MainWindow()
         {
             B1 = false;
             B2 = false;
             InitializeComponent();
+
+            prev = 1;
+            now = 1;
+
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(0.5);
             _timer.Tick += timer_Tick;
-            solver = new Driver();
+
+            _timer2 = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(0.3);
+            _timer2.Tick += timer_Tick2;
         }
 
         private void Load_Graph_Click(object sender, RoutedEventArgs e)
@@ -109,7 +119,7 @@ namespace Prototype1
             {
                 bool found2 = false;
                 List<int> res = new List<int>();
-                solver.recurseSolve(1, quests.getFrom(counter), ref found2, map, ref res);
+                recurseSolve(1, quests.getFrom(counter), ref found2, map, ref res);
                 solution = null;
                 solution = new List<int>(res);
                 if (!res.Contains(quests.getTo(counter)))
@@ -132,7 +142,7 @@ namespace Prototype1
             {
                 bool found3 = false;
                 List<int> res = new List<int>();
-                solver.recurseSolve(quests.getFrom(counter), quests.getTo(counter), ref found3, map, ref res);
+                recurseSolve(quests.getFrom(counter), quests.getTo(counter), ref found3, map, ref res);
                 solution = null;
                 solution = new List<int>(res);
 
@@ -193,7 +203,7 @@ namespace Prototype1
             {
                 bool found2 = false;
                 List<int> res = new List<int>();
-                solver.recurseSolve(1, quest.getFrom(), ref found2, map, ref res);
+                recurseSolve(1, quest.getFrom(), ref found2, map, ref res);
                 solution = null;
                 solution = new List<int>(res);
                 if (!res.Contains(quest.getTo()))
@@ -218,7 +228,7 @@ namespace Prototype1
 
                 bool found3 = false;
                 List<int> res = new List<int>();
-                solver.recurseSolve(quest.getFrom(), quest.getTo(), ref found3, map, ref res);
+                recurseSolve(quest.getFrom(), quest.getTo(), ref found3, map, ref res);
                 solution = null;
                 solution = new List<int>(res);
 
@@ -287,6 +297,48 @@ namespace Prototype1
             if (checker >= solution.Count())
             {
                 _timer.Stop();
+            }
+        }
+
+        private void timer_Tick2(object sender, EventArgs e)
+        {
+            graph.FindNode(now.ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
+            graph.FindNode(prev.ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
+            this.gViewer.Graph = graph;
+            _timer2.Stop();
+        }
+
+        public void recurseSolve(int curr, int target, ref bool found, Graf path, ref List<int> result)
+        {
+            now = curr;
+            _timer2.Start();
+
+            List<int> neighbor = path.getPath(curr);
+
+            if (curr == target)
+            {
+                found = true;
+                result.Add(target);
+            }
+            else if (neighbor == null)
+            {
+                found = false;
+                result.Remove(curr);
+            }
+            else
+            {
+                result.Add(curr);
+                int i = 0;
+                prev = curr;
+                while ((i < neighbor.Count) && (!found))
+                {
+                    recurseSolve(neighbor[i], target, ref found, path, ref result);
+                    i++;
+                }
+                if (!found)
+                {
+                    result.Remove(curr);
+                }
             }
         }
     }

@@ -146,36 +146,6 @@ namespace Prototype1
             return false;
         }
 
-        public void recurseSolve(int curr, int target, ref bool found, Graf path, ref List<int> result)
-        {
-            List<int> neighbor = path.getPath(curr);
-
-            if (curr == target)
-            {
-                found = true;
-                result.Add(target);
-            }
-            else if (neighbor == null)
-            {
-                found = false;
-                result.Remove(curr);
-            }
-            else
-            {
-                result.Add(curr);
-                int i = 0;
-                while ((i < neighbor.Count) && (!found))
-                {
-                    recurseSolve(neighbor[i], target, ref found, path, ref result);
-                    i++;
-                }
-                if (!found)
-                {
-                    result.Remove(curr);
-                }
-            }
-        }
-
         public void recursiveCont(int curr, Graf path, ref List<int> further){
             List<int> neighbor = path.getPath(curr);
             further.Add(curr);
