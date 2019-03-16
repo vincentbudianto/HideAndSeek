@@ -86,3 +86,25 @@ C:\Users\vincent VB\Desktop\IF\IF2211 - Strategi Algoritma\Tugas Besar 2\src\Pro
 C:\Users\vincent VB\Desktop\IF\IF2211 - Strategi Algoritma\Tugas Besar 2\src\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.CopyComplete
 C:\Users\vincent VB\Desktop\IF\IF2211 - Strategi Algoritma\Tugas Besar 2\src\Prototype1\Prototype1\obj\Debug\Prototype1.exe
 C:\Users\vincent VB\Desktop\IF\IF2211 - Strategi Algoritma\Tugas Besar 2\src\Prototype1\Prototype1\obj\Debug\Prototype1.pdb
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\bin\Debug\Prototype1.exe.config
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\bin\Debug\Prototype1.exe
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\bin\Debug\Prototype1.pdb
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.dll
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.Drawing.dll
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.xml
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.Drawing.xml
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.GraphViewerGdi.xml
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.csprojAssemblyReference.cache
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\obj\Debug\MainWindow.g.cs
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\obj\Debug\App.g.cs
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1_MarkupCompile.cache
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1_MarkupCompile.lref
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\obj\Debug\MainWindow.baml
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.g.resources
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.Properties.Resources.resources
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.GenerateResource.cache
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.CoreCompileInputs.cache
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.CopyComplete
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.exe
+E:\GitHub\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.pdb
