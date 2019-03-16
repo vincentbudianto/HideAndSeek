@@ -25,7 +25,7 @@ namespace Prototype1
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DispatcherTimer _timer1, _timer2;
+        private DispatcherTimer _timer, _timer2;
         private ExQuery quests;
         private Graf map;
         private int counter, checker;
@@ -35,15 +35,18 @@ namespace Prototype1
         public Msagl.Graph graph = new Msagl.Graph("graph");
         public String dirGraph, dirExQuery;
 
+        private int prev;
+        private int now;
+
         public MainWindow()
         {
             B1 = false;
             B2 = false;
             InitializeComponent();
 
-            _timer1 = new DispatcherTimer();
-            _timer1.Interval = TimeSpan.FromSeconds(0.5);
-            _timer1.Tick += timer_Tick_Green;
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(0.5);
+            _timer.Tick += timer_Tick_Green;
 
             _timer2 = new DispatcherTimer();
             _timer2.Interval = TimeSpan.FromSeconds(0.5);
@@ -130,52 +133,57 @@ namespace Prototype1
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
+            resetGraph();
             if (quests.getMove(counter) == 0)
             {
                 bool found2 = false;
                 List<int> res = new List<int>();
+                String ans = quests.getMove(counter) + " " + quests.getTo(counter) + " " + quests.getFrom(counter);
+                Result.Content += ans;
                 recurseSolve(1, quests.getFrom(counter), ref found2, map, ref res);
                 solution = null;
                 solution = new List<int>(res);
 
+
                 if (!res.Contains(quests.getTo(counter)))
                 {
-                    resetGraph();
-                    String ans = quests.getMove(counter) + " " + quests.getTo(counter) + " " + quests.getFrom(counter) + "   TIDAK\n";
+                    ans = "   TIDAK\n";
                     Result.Content += ans;
+                    resetGraph();
                     this.gViewer.Graph = graph;
                 }
                 else
                 {
-                    resetGraph();
-                    String ans = quests.getMove(counter) + " " + quests.getTo(counter) + " " + quests.getFrom(counter) + "   YA\n";
+                    ans = "   YA\n";
                     Result.Content += ans;
-                    checker = 0;
-                    _timer1.Start();
+                    //checker = 0;
+                    //_timer.Start();
                 }
             }
             else if (quests.getMove(counter) == 1)
             {
                 bool found3 = false;
                 List<int> res = new List<int>();
+                String ans = quests.getMove(counter) + " " + quests.getTo(counter) + " " + quests.getFrom(counter);
+                Result.Content += ans;
                 recurseSolve(quests.getFrom(counter), quests.getTo(counter), ref found3, map, ref res);
                 solution = null;
                 solution = new List<int>(res);
 
+
                 if (found3)
                 {
-                    resetGraph();
-                    String ans = quests.getMove(counter) + " " + quests.getTo(counter) + " " + quests.getFrom(counter) + "   YA\n";
+                    ans = "   YA\n";
                     Result.Content += ans;
 
-                    checker = 0;
-                    _timer1.Start();
+                    //checker = 0;
+                    //_timer.Start();
                 }
                 else
                 {
-                    resetGraph();
-                    String ans = quests.getMove(counter) + " " + quests.getTo(counter) + " " + quests.getFrom(counter) + "   TIDAK\n";
+                    ans = "   TIDAK\n";
                     Result.Content += ans;
+                    resetGraph();
                     this.gViewer.Graph = graph;
                 }
             }
@@ -192,6 +200,7 @@ namespace Prototype1
         {
             try
             {
+                resetGraph();
                 if (B1)
                 {
                     Result.Content = "";
@@ -206,50 +215,52 @@ namespace Prototype1
                 {
                     bool found2 = false;
                     List<int> res = new List<int>();
+                    String ans = quests.getMove(counter) + " " + quests.getTo(counter) + " " + quests.getFrom(counter);
+                    Result.Content += ans;
                     recurseSolve(1, quest.getFrom(), ref found2, map, ref res);
                     solution = null;
                     solution = new List<int>(res);
 
                     if (!res.Contains(quest.getTo()))
                     {
+                        ans = "   TIDAK\n";
+                        Result.Content += ans;
                         resetGraph();
-                        String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   TIDAK\n";
-                        Result.Content = ans + Result.Content;
                         this.gViewer.Graph = graph;
                     }
                     else
                     {
-                        resetGraph();
-                        String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   YA\n";
-                        Result.Content = ans + Result.Content;
+                        ans = "   YA\n";
+                        Result.Content += ans;
 
-                        checker = 0;
-                        _timer1.Start();
+                        //checker = 0;
+                        //_timer.Start();
                     }
                 }
                 else if (quest.getMove() == 1)
                 {
                     bool found3 = false;
                     List<int> res = new List<int>();
+                    String ans = quests.getMove(counter) + " " + quests.getTo(counter) + " " + quests.getFrom(counter);
+                    Result.Content += ans;
                     recurseSolve(quest.getFrom(), quest.getTo(), ref found3, map, ref res);
                     solution = null;
                     solution = new List<int>(res);
 
                     if (found3)
                     {
-                        resetGraph();
-                        String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   YA\n";
-                        Result.Content = ans + Result.Content;
+                        ans = "   YA\n";
+                        Result.Content += ans;
 
-                        checker = 0;
-                        _timer1.Start();
+                        //checker = 0;
+                        //_timer1Start();
 
                     }
                     else
                     {
+                        ans = "   TIDAK\n";
+                        Result.Content += ans;
                         resetGraph();
-                        String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   TIDAK\n";
-                        Result.Content = ans + Result.Content;
                         this.gViewer.Graph = graph;
                     }
                 }
@@ -277,35 +288,26 @@ namespace Prototype1
 
         private void timer_Tick_Green(object sender, EventArgs e)
         {
-            if (checker < solution.Count())
-            {
-                graph.FindNode((solution[checker]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
-                this.gViewer.Graph = graph;
-            }
-            
+            graph.FindNode(now.ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
+            this.gViewer.Graph = graph;
             checker++;
-
-            if (checker >= solution.Count())
+            if (checker >= 1)
             {
-                _timer1.Stop();
+                _timer.Stop();
             }
         }
 
         private void timer_Tick_Red(object sender, EventArgs e)
         {
-            if (checker < solution.Count())
-            {
-                graph.FindNode((solution[checker]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
-                this.gViewer.Graph = graph;
-            }
-
+            graph.FindNode(prev.ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
+            this.gViewer.Graph = graph;
             checker++;
-
-            if (checker >= solution.Count())
+            if (checker >= 1)
             {
                 _timer2.Stop();
             }
         }
+
 
         public void recurseSolve(int curr, int target, ref bool found, Graf path, ref List<int> result)
         {
@@ -314,26 +316,40 @@ namespace Prototype1
             if (curr == target)
             {
                 found = true;
+                now = target;
+                checker = 0;
+                _timer.Start();
+                MessageBox.Show("Hijau " + now);
                 result.Add(target);
             }
             else if (neighbor == null)
             {
                 found = false;
+                prev = curr;
+                checker = 0;
+                _timer2.Start();
+                MessageBox.Show("Merah " + prev);
                 result.Remove(curr);
             }
             else
             {
+                now = curr;
+                checker = 0;
+                _timer.Start();
+                MessageBox.Show("Hijau " + now);
                 result.Add(curr);
                 int i = 0;
-
                 while ((i < neighbor.Count) && (!found))
                 {
                     recurseSolve(neighbor[i], target, ref found, path, ref result);
                     i++;
                 }
-
                 if (!found)
                 {
+                    prev = curr;
+                    checker = 0;
+                    _timer2.Start();
+                    MessageBox.Show("Merah " + prev);
                     result.Remove(curr);
                 }
             }
