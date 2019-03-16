@@ -42,3 +42,25 @@ D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prot
 D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.CopyComplete
 D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.exe
 D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.pdb
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\bin\Debug\Prototype1.exe.config
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\bin\Debug\Prototype1.exe
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\bin\Debug\Prototype1.pdb
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.dll
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.Drawing.dll
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.xml
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.Drawing.xml
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.GraphViewerGdi.xml
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\obj\Debug\Prototype1.csprojAssemblyReference.cache
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\obj\Debug\MainWindow.g.cs
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\obj\Debug\App.g.cs
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\obj\Debug\Prototype1_MarkupCompile.cache
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\obj\Debug\Prototype1_MarkupCompile.lref
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\obj\Debug\MainWindow.baml
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\obj\Debug\Prototype1.g.resources
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\obj\Debug\Prototype1.Properties.Resources.resources
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.GenerateResource.cache
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.CoreCompileInputs.cache
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.CopyComplete
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\obj\Debug\Prototype1.exe
+C:\Users\Meyjan\Documents\Prototype1\Prototype1\obj\Debug\Prototype1.pdb

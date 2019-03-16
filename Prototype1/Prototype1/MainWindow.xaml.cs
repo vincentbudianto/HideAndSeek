@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Microsoft.Win32;
 using Msagl = Microsoft.Msagl.Drawing;
 
@@ -34,6 +35,10 @@ namespace Prototype1
         public Msagl.Graph graph = new Msagl.Graph("graph");
 
         private int counter;
+        private int checker;
+        private List<int> solution;
+
+        public Boolean temp;
 
         public MainWindow()
         {
@@ -220,6 +225,7 @@ namespace Prototype1
                 bool found3 = false;
                 List<int> res = new List<int>();
                 solver.recurseSolve(quest.getFrom(), quest.getTo(), ref found3, map, ref res);
+                solution = new List<int>(res);
 
                 if (found3)
                 {
@@ -227,11 +233,30 @@ namespace Prototype1
                     String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   YA\n";
                     Result.Content = ans + Result.Content;
 
+                    int j = 0;
+                    DispatcherTimer timer = new DispatcherTimer();
+                    timer.Interval = TimeSpan.FromSeconds(2);
+                    checker = j;
+                    timer.Tick += timer_Tick;
+                    timer.Start();
+
+                    while(temp && j < res.Count())
+                    {
+                        temp = false;
+                        timer.res
+                    }
+
                     for (int j = 0; j < res.Count(); j++)
                     {
-                        graph.FindNode((res[j]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
+                        temp = false;
+                        //MessageBox.Show(res[j].ToString());
+                        //graph.FindNode((res[j]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
+                        //this.gViewer.Graph = graph;
+                        if (temp)
+                        {
+                            timer.Stop();
+                        }
                     }
-                    this.gViewer.Graph = graph;
                 }
                 else
                 {
@@ -260,6 +285,12 @@ namespace Prototype1
                 }
             }
 
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            graph.FindNode((solution[checker]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
+            this.gViewer.Graph = graph;
+            temp = true;
         }
     }
 }
