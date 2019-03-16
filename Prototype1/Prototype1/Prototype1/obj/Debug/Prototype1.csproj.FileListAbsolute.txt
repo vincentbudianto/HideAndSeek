@@ -1,0 +1,44 @@
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\obj\Debug\Prototype1.csprojAssemblyReference.cache
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\obj\Debug\MainWindow.g.cs
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\obj\Debug\App.g.cs
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\obj\Debug\Prototype1_MarkupCompile.cache
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\obj\Debug\Prototype1_MarkupCompile.lref
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\bin\Debug\Prototype1.exe.config
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\bin\Debug\Prototype1.exe
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\bin\Debug\Prototype1.pdb
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\obj\Debug\MainWindow.baml
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\obj\Debug\Prototype1.g.resources
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\obj\Debug\Prototype1.Properties.Resources.resources
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.GenerateResource.cache
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.CoreCompileInputs.cache
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\obj\Debug\Prototype1.exe
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\obj\Debug\Prototype1.pdb
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.dll
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.Drawing.dll
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.xml
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.Drawing.xml
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.GraphViewerGdi.xml
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\Coba 1\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.CopyComplete
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\bin\Debug\Prototype1.exe.config
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\bin\Debug\Prototype1.exe
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\bin\Debug\Prototype1.pdb
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.dll
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.Drawing.dll
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.xml
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.Drawing.xml
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\bin\Debug\Microsoft.Msagl.GraphViewerGdi.xml
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.csprojAssemblyReference.cache
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\MainWindow.g.cs
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\App.g.cs
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1_MarkupCompile.cache
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1_MarkupCompile.lref
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\MainWindow.baml
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.g.resources
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.Properties.Resources.resources
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.GenerateResource.cache
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.CoreCompileInputs.cache
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.csproj.CopyComplete
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.exe
+D:\ITB\Semester 4\Kelas Kuliah\Strategi Algoritma\Tugas Besar 2\HideAndSeek\Prototype1\Prototype1\obj\Debug\Prototype1.pdb
