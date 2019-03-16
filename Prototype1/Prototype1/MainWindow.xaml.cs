@@ -58,7 +58,7 @@ namespace Prototype1
             _timer.Tick += timer_Tick;
 
             _timer2 = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(0.3);
+            _timer.Interval = TimeSpan.FromSeconds(1);
             _timer2.Tick += timer_Tick2;
         }
 
@@ -310,8 +310,8 @@ namespace Prototype1
 
         public void recurseSolve(int curr, int target, ref bool found, Graf path, ref List<int> result)
         {
-            now = curr;
-            _timer2.Start();
+            //now = curr;
+            //_timer2.Start();
 
             List<int> neighbor = path.getPath(curr);
 
@@ -329,7 +329,7 @@ namespace Prototype1
             {
                 result.Add(curr);
                 int i = 0;
-                prev = curr;
+                //prev = curr;
                 while ((i < neighbor.Count) && (!found))
                 {
                     recurseSolve(neighbor[i], target, ref found, path, ref result);
