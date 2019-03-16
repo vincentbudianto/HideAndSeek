@@ -20,7 +20,6 @@ using Msagl = Microsoft.Msagl.Drawing;
 
 namespace Prototype1
 {
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -116,6 +115,19 @@ namespace Prototype1
             }
         }
 
+        private void Open_Query_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog2 = new OpenFileDialog();
+            openFileDialog2.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            if (openFileDialog2.ShowDialog() == true)
+            {
+                dirExQuery = openFileDialog2.FileName;
+                ExQuery_Text.Text = System.IO.Path.GetFileName(dirExQuery);
+                Load_Query.IsEnabled = true;
+            }
+        }
+
         private void Next_Click(object sender, RoutedEventArgs e)
         {
             if (quests.getMove(counter) == 0)
@@ -173,19 +185,6 @@ namespace Prototype1
             if (counter == quests.getNum())
             {
                 Next.IsEnabled = false;
-            }
-        }
-
-        private void Open_Query_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog2 = new OpenFileDialog();
-            openFileDialog2.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-
-            if (openFileDialog2.ShowDialog() == true)
-            {
-                dirExQuery = openFileDialog2.FileName;
-                ExQuery_Text.Text = System.IO.Path.GetFileName(dirExQuery);
-                Load_Query.IsEnabled = true;
             }
         }
 
@@ -275,6 +274,7 @@ namespace Prototype1
             }
 
         }
+
         private void timer_Tick_Green(object sender, EventArgs e)
         {
             if (checker < solution.Count())
