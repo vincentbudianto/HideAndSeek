@@ -37,6 +37,7 @@ namespace Prototype1
         private int counter;
         private int checker;
         private List<int> solution;
+        private DispatcherTimer _timer;
 
         public Boolean temp;
 
@@ -45,12 +46,16 @@ namespace Prototype1
             B1 = false;
             B2 = false;
             InitializeComponent();
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(0.5);
+            _timer.Tick += timer_Tick;
             solver = new Driver();
         }
 
         private void Load_Graph_Click(object sender, RoutedEventArgs e)
         {
             map = new Graf(dirGraph);
+            Enter_Query.IsEnabled = true;
             Next.IsEnabled = false;
             this.gViewer.Graph = null;
             graph = new Msagl.Graph("graph");
@@ -105,6 +110,8 @@ namespace Prototype1
                 bool found2 = false;
                 List<int> res = new List<int>();
                 solver.recurseSolve(1, quests.getFrom(counter), ref found2, map, ref res);
+                solution = null;
+                solution = new List<int>(res);
                 if (!res.Contains(quests.getTo(counter)))
                 {
                     resetGraph();
@@ -117,15 +124,8 @@ namespace Prototype1
                     resetGraph();
                     String ans = quests.getMove(counter) + " " + quests.getTo(counter) + " " + quests.getFrom(counter) + "   YA\n";
                     Result.Content += ans;
-                    int j = res.Count()-1;
-                    do
-                    {
-                        graph.FindNode((res[j]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
-                        this.gViewer.Graph = graph;
-                        j--;
-                    } while (res[j] != quests.getTo(counter));
-                    graph.FindNode((res[j]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
-                    this.gViewer.Graph = graph;
+                    checker = 0;
+                    _timer.Start();
                 }
             }
             else if (quests.getMove(counter) == 1)
@@ -133,6 +133,8 @@ namespace Prototype1
                 bool found3 = false;
                 List<int> res = new List<int>();
                 solver.recurseSolve(quests.getFrom(counter), quests.getTo(counter), ref found3, map, ref res);
+                solution = null;
+                solution = new List<int>(res);
 
                 if (found3)
                 {
@@ -140,11 +142,8 @@ namespace Prototype1
                     String ans = quests.getMove(counter) + " " + quests.getTo(counter) + " " + quests.getFrom(counter) + "   YA\n";
                     Result.Content += ans;
 
-                    for (int j = 0; j < res.Count(); j++)
-                    {
-                        graph.FindNode((res[j]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
-                    }
-                    this.gViewer.Graph = graph;
+                    checker = 0;
+                    _timer.Start();
                 }
                 else
                 {
@@ -195,6 +194,8 @@ namespace Prototype1
                 bool found2 = false;
                 List<int> res = new List<int>();
                 solver.recurseSolve(1, quest.getFrom(), ref found2, map, ref res);
+                solution = null;
+                solution = new List<int>(res);
                 if (!res.Contains(quest.getTo()))
                 {
                     resetGraph();
@@ -208,15 +209,8 @@ namespace Prototype1
                     String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   YA\n";
                     Result.Content = ans + Result.Content;
 
-                    int j = res.Count() - 1;
-                    do
-                    {
-                        graph.FindNode((res[j]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
-                        this.gViewer.Graph = graph;
-                        j--;
-                    } while (res[j] != quest.getTo());
-                    graph.FindNode((res[j]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
-                    this.gViewer.Graph = graph;
+                    checker = 0;
+                    _timer.Start();
                 }
             }
             else if (quest.getMove() == 1)
@@ -225,6 +219,7 @@ namespace Prototype1
                 bool found3 = false;
                 List<int> res = new List<int>();
                 solver.recurseSolve(quest.getFrom(), quest.getTo(), ref found3, map, ref res);
+                solution = null;
                 solution = new List<int>(res);
 
                 if (found3)
@@ -233,30 +228,9 @@ namespace Prototype1
                     String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   YA\n";
                     Result.Content = ans + Result.Content;
 
-                    int j = 0;
-                    DispatcherTimer timer = new DispatcherTimer();
-                    timer.Interval = TimeSpan.FromSeconds(2);
-                    checker = j;
-                    timer.Tick += timer_Tick;
-                    timer.Start();
-
-                    while(temp && j < res.Count())
-                    {
-                        temp = false;
-                        timer.res
-                    }
-
-                    for (int j = 0; j < res.Count(); j++)
-                    {
-                        temp = false;
-                        //MessageBox.Show(res[j].ToString());
-                        //graph.FindNode((res[j]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
-                        //this.gViewer.Graph = graph;
-                        if (temp)
-                        {
-                            timer.Stop();
-                        }
-                    }
+                    checker = 0;
+                    _timer.Start();
+                    
                 }
                 else
                 {
@@ -288,9 +262,32 @@ namespace Prototype1
         }
         private void timer_Tick(object sender, EventArgs e)
         {
-            graph.FindNode((solution[checker]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
-            this.gViewer.Graph = graph;
-            temp = true;
+            if (checker < solution.Count())
+            {
+                graph.FindNode((solution[checker]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
+                this.gViewer.Graph = graph;
+            }
+            
+            checker++;
+            if (checker >= solution.Count())
+            {
+                _timer.Stop();
+            }
+        }
+
+        private void timer_Tick_Red(object sender, EventArgs e)
+        {
+            if (checker < solution.Count())
+            {
+                graph.FindNode((solution[checker]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
+                this.gViewer.Graph = graph;
+            }
+
+            checker++;
+            if (checker >= solution.Count())
+            {
+                _timer.Stop();
+            }
         }
     }
 }
