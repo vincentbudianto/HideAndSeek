@@ -41,6 +41,19 @@ namespace Prototype1
             solver = new Driver();
         }
 
+        private void Open_Graph_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            if (openFileDialog1.ShowDialog() == true)
+            {
+                dirGraph = openFileDialog1.FileName;
+                Graph_Text.Text = System.IO.Path.GetFileName(dirGraph);
+                Load_Graph.IsEnabled = true;
+            }
+        }
+
         private void Load_Graph_Click(object sender, RoutedEventArgs e)
         {
             map = new Graf(dirGraph);
@@ -58,6 +71,20 @@ namespace Prototype1
                 }
             }
             this.gViewer.Graph = graph;
+            Load_Graph.IsEnabled = false;
+        }
+
+        private void Open_Query_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog2 = new OpenFileDialog();
+            openFileDialog2.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            if (openFileDialog2.ShowDialog() == true)
+            {
+                dirExQuery = openFileDialog2.FileName;
+                ExQuery_Text.Text = System.IO.Path.GetFileName(dirExQuery);
+                Load_Query.IsEnabled = true;
+            }
         }
 
         private void Load_Query_Click(object sender, RoutedEventArgs e)
@@ -70,15 +97,16 @@ namespace Prototype1
 
             B1 = true;
             quests = new ExQuery(dirExQuery);
+            List<int> res = new List<int>();
 
             Result.Content += quests.getNum() + "\n";
 
             for (int i = 0; i < quests.getNum(); i++)
             {
+                res.Clear();
                 if (quests.getMove(i) == 0)
                 {
                     bool found2 = false;
-                    List<int> res = new List<int>();
                     solver.recurseSolve(1, quests.getFrom(i), ref found2, map, ref res);
                     if (!res.Contains(quests.getTo(i)))
                     {
@@ -95,7 +123,6 @@ namespace Prototype1
                 else if (quests.getMove(i) == 1)
                 {
                     bool found3 = false;
-                    List<int> res = new List<int>();
                     solver.recurseSolve(quests.getFrom(i), quests.getTo(i), ref found3, map, ref res);
 
                     if (found3)
@@ -107,6 +134,8 @@ namespace Prototype1
                         {
                             //MessageBox.Show(res[j].ToString());
                             graph.FindNode((res[j]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
+                            
+                            //System.Threading.Thread.Sleep(3000);
                             this.gViewer.Graph = graph;
                         }
                     }
@@ -121,24 +150,9 @@ namespace Prototype1
                     Console.WriteLine("Invalid command");
                 }
             }
-        }
 
-        private void Open_Graph_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            if (openFileDialog1.ShowDialog() == true) {
-                dirGraph = openFileDialog1.FileName;
-                Graph_Text.Text = System.IO.Path.GetFileName(dirGraph);
-            }
-        }
-        
-        private void Open_Query_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog2 = new OpenFileDialog();
-            if (openFileDialog2.ShowDialog() == true)
+            if (res.Count() > 1)
             {
-                dirExQuery = openFileDialog2.FileName;
-                ExQuery_Text.Text = System.IO.Path.GetFileName(dirExQuery);
                 Next.IsEnabled = true;
             }
         }
@@ -168,6 +182,12 @@ namespace Prototype1
                 {
                     String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   YA\n";
                     Result.Content = ans + Result.Content;
+
+                    for (int j = 0; j < res.Count(); j++)
+                    {
+                        graph.FindNode((res[j]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
+                        this.gViewer.Graph = graph;
+                    }
                 }
             }
             else if (quest.getMove() == 1)
@@ -181,6 +201,12 @@ namespace Prototype1
                 {
                     String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom() + "   YA\n";
                     Result.Content = ans + Result.Content;
+                    for (int j = 0; j < res.Count(); j++)
+                    {
+                        MessageBox.Show("");
+                        graph.FindNode((res[j]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
+                        this.gViewer.Graph = graph;
+                    }
                 }
                 else
                 {
