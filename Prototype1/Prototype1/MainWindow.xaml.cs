@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace Prototype1
         private Driver solver;
         public Boolean B1, B2;
         public String dirGraph, dirExQuery;
+        public Msagl.Graph graph = new Msagl.Graph("graph");
 
         public MainWindow()
         {
@@ -42,9 +44,6 @@ namespace Prototype1
         private void Load_Graph_Click(object sender, RoutedEventArgs e)
         {
             map = new Graf(dirGraph);
-            MessageBox.Show("Graph built!");
-
-            Msagl.Graph graph = new Msagl.Graph("graph");
 
             for (int i = 1; i < map.getHouses(); i++)
             {
@@ -52,9 +51,11 @@ namespace Prototype1
                 {
                     string str1 = i.ToString();
                     string str2 = map.getPath(i)[j].ToString();
-                    graph.AddEdge(str1, str2);
+                    graph.AddEdge(str1, str2).Attr.ArrowheadAtTarget = Msagl.ArrowStyle.None;
+                    //graph.AddEdge(str1, str2).Attr.Color = Microsoft.Msagl.Drawing.Color.DarkRed;
+                    graph.FindNode(str1).Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
+                    graph.FindNode(str2).Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
                 }
-
             }
             this.gViewer.Graph = graph;
         }
@@ -86,6 +87,7 @@ namespace Prototype1
                     }
                     else
                     {
+                        this.gViewer.Graph = null;
                         String ans = quests.getMove(i) + " " + quests.getTo(i) + " " + quests.getFrom(i) + "   YA\n";
                         Result.Content += ans;
                     }
@@ -100,6 +102,13 @@ namespace Prototype1
                     {
                         String ans = quests.getMove(i) + " " + quests.getTo(i) + " " + quests.getFrom(i) + "   YA\n";
                         Result.Content += ans;
+
+                        for (int j = 0; j < res.Count(); j++)
+                        {
+                            //MessageBox.Show(res[j].ToString());
+                            graph.FindNode((res[j]).ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
+                            this.gViewer.Graph = graph;
+                        }
                     }
                     else
                     {
@@ -122,7 +131,7 @@ namespace Prototype1
                 Graph_Text.Text = System.IO.Path.GetFileName(dirGraph);
             }
         }
-
+        
         private void Open_Query_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog2 = new OpenFileDialog();
@@ -130,6 +139,7 @@ namespace Prototype1
             {
                 dirExQuery = openFileDialog2.FileName;
                 ExQuery_Text.Text = System.IO.Path.GetFileName(dirExQuery);
+                Next.IsEnabled = true;
             }
         }
 
