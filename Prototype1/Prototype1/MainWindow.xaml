@@ -15,8 +15,8 @@
         <Label x:Name="Label_3" Content="Insert Query" HorizontalAlignment="Left" Margin="10,202,0,0" VerticalAlignment="Top" Height="35" Width="148" FontSize="18" FontWeight="Bold"/>
         <Label x:Name="Label_4" Content="Result" HorizontalAlignment="Left" Margin="10,274,0,0" VerticalAlignment="Top" Height="35" Width="148" FontSize="18" FontWeight="Bold"/>
         <ScrollViewer x:Name="Result" HorizontalAlignment="Left" Height="90" Margin="17,309,0,0" VerticalAlignment="Top" Width="183" FontWeight="Bold" VerticalScrollBarVisibility="Hidden"/>
-        <Button x:Name="Load_Graph" Content="Load Graph" HorizontalAlignment="Left" Margin="222,115,0,0" VerticalAlignment="Top" Width="75" Click="Load_Graph_Click"/>
-        <Button x:Name="Load_Query" Content="Load Query" HorizontalAlignment="Left" Margin="222,178,0,0" VerticalAlignment="Top" Width="75" Click="Load_Query_Click"/>
+        <Button x:Name="Load_Graph" Content="Load Graph" HorizontalAlignment="Left" Margin="222,115,0,0" VerticalAlignment="Top" Width="75" Click="Load_Graph_Click" IsEnabled="False"/>
+        <Button x:Name="Load_Query" Content="Load Query" HorizontalAlignment="Left" Margin="222,178,0,0" VerticalAlignment="Top" Width="75" Click="Load_Query_Click" IsEnabled="False"/>
         <Button x:Name="Enter_Query" Content="Enter Query" HorizontalAlignment="Left" Margin="220,237,0,0" VerticalAlignment="Top" Width="75" Click="Enter_Query_Click"/>
         <TextBox x:Name="Graph_Text" HorizontalAlignment="Left" Height="23" Margin="16,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" IsReadOnly="True"/>
         <TextBox x:Name="ExQuery_Text" HorizontalAlignment="Left" Height="23" Margin="16,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
@@ -26,7 +26,7 @@
         </WindowsFormsHost>
         <Button x:Name="Open_Graph" Content="Open File" HorizontalAlignment="Left" Margin="142,115,0,0" VerticalAlignment="Top" Width="75" Click="Open_Graph_Click"/>
         <Button x:Name="Open_Query" Content="Open File" HorizontalAlignment="Left" Margin="142,178,0,0" VerticalAlignment="Top" Width="75" Click="Open_Query_Click"/>
-        <Button x:Name="Next" Content="Next Result" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="220,380,0,0" IsEnabled="False"/>
+        <Button x:Name="Next" Content="Next Result" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="220,380,0,0" IsEnabled="False" Click="Next_Click"/>
 
     </Grid>
 </Window>
