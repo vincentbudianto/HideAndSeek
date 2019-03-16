@@ -75,7 +75,7 @@ namespace Prototype1
             }
             catch
             {
-                MessageBox.Show("      Error Code 0x05021999\n             File Input Error");
+                MessageBox.Show("      Error Code 0x05021999\n             File Input Error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -98,7 +98,7 @@ namespace Prototype1
             }
             catch
             {
-                MessageBox.Show("      Error Code 0x28041999\n             File Input Error");
+                MessageBox.Show("      Error Code 0x28041999\n             File Input Error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -256,7 +256,7 @@ namespace Prototype1
             }
             catch
             {
-                MessageBox.Show("      Error Code 0x14031999\n                Input Error");
+                MessageBox.Show("      Error Code 0x14031999\n                Input Error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
