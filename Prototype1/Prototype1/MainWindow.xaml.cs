@@ -92,15 +92,22 @@ namespace Prototype1
                 this.gViewer.Graph = null;
                 graph = new Msagl.Graph("graph");
 
-                for (int i = 1; i < map.getHouses(); i++)
+                for (int i = map.getHouses()-1; i>0; i--)
                 {
-                    for (int j = 0; j < map.getPath(i).Count(); j++)
+                    for (int j = map.getPath(i).Count()-1; j >=0 ; j--)
                     {
                         string str1 = i.ToString();
                         string str2 = map.getPath(i)[j].ToString();
+
                         graph.AddEdge(str1, str2).Attr.ArrowheadAtTarget = Msagl.ArrowStyle.None;
-                        graph.FindNode(str1).Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
-                        graph.FindNode(str2).Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
+
+                        Microsoft.Msagl.Drawing.Node from = graph.FindNode(str1);
+                        Microsoft.Msagl.Drawing.Node to = graph.FindNode(str2);
+
+                        from.Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
+                        from.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Circle;
+                        to.Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
+                        to.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Circle;
                     }
                 }
                 this.gViewer.Graph = graph;
