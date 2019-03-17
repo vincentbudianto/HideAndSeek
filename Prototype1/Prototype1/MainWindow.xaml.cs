@@ -1,19 +1,7 @@
 ﻿using System;
-using System.Threading;
-using System.IO;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using Microsoft.Win32;
 using Msagl = Microsoft.Msagl.Drawing;
@@ -25,6 +13,9 @@ namespace Prototype1
     /// </summary>
     
     public class AutoClosingMessageBox
+    // Created by : DmitryGaravsky
+    // To install AutoClosingMessageBox, run the following command in the Package Manager Console:
+    // PM> Install-Package AutoClosingMessageBox -Version 1.0.0.2
     {
         System.Threading.Timer _timeoutTimer;
         string _caption;
@@ -56,7 +47,7 @@ namespace Prototype1
 
     public partial class MainWindow : Window
     {
-        public Boolean B1, B2;
+        public Boolean B1;
         private DispatcherTimer _timer, _timer2;
         private ExQuery quests;
         private Graf map;
@@ -64,21 +55,33 @@ namespace Prototype1
         private List<int> solution;
         public Msagl.Graph graph = new Msagl.Graph("graph");
         private Query quest;
-        public String dirGraph, dirExQuery;
+        public String dirExQuery, dirGraph, nowpath, prevpath;
         
         public MainWindow()
         {
             B1 = false;
-            B2 = false;
             InitializeComponent();
 
             _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromMilliseconds(0.000000001);
+            _timer.Interval = TimeSpan.FromMilliseconds(0.0000009);
             _timer.Tick += timer_Tick_Green;
 
             _timer2 = new DispatcherTimer();
-            _timer2.Interval = TimeSpan.FromMilliseconds(0.000000001);
+            _timer2.Interval = TimeSpan.FromMilliseconds(0.0000009);
             _timer2.Tick += timer_Tick_Red;
+        }
+
+        private void Open_Graph_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            if (openFileDialog1.ShowDialog() == true)
+            {
+                dirGraph = openFileDialog1.FileName;
+                Graph_Text.Text = System.IO.Path.GetFileName(dirGraph);
+                Load_Graph.IsEnabled = true;
+            }
         }
 
         private void Load_Graph_Click(object sender, RoutedEventArgs e)
@@ -118,42 +121,6 @@ namespace Prototype1
             }
         }
 
-        private void Load_Query_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (B2)
-                {
-                    Result.Content = "";
-                    B2 = false;
-                }
-
-                B1 = true;
-                quests = new ExQuery(dirExQuery);
-                Next.IsEnabled = true;
-
-                Result.Content += "Total query = " + quests.getNum() + "\n";
-                counter = 0;
-            }
-            catch
-            {
-                MessageBox.Show("      Error Code 0x28041999\n             File Input Error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void Open_Graph_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-
-            if (openFileDialog1.ShowDialog() == true)
-            {
-                dirGraph = openFileDialog1.FileName;
-                Graph_Text.Text = System.IO.Path.GetFileName(dirGraph);
-                Load_Graph.IsEnabled = true;
-            }
-        }
-
         private void Open_Query_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog2 = new OpenFileDialog();
@@ -164,6 +131,26 @@ namespace Prototype1
                 dirExQuery = openFileDialog2.FileName;
                 ExQuery_Text.Text = System.IO.Path.GetFileName(dirExQuery);
                 Load_Query.IsEnabled = true;
+            }
+        }
+
+        private void Load_Query_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                B1 = true;
+                quests = new ExQuery(dirExQuery);
+                Next.IsEnabled = true;
+                Result.Content = "";
+
+                Result.Content += "Total query = " + quests.getNum() + "\n";
+                counter = 0;
+
+                Next_Click(sender, e);
+            }
+            catch
+            {
+                MessageBox.Show("      Error Code 0x28041999\n             File Input Error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -235,14 +222,13 @@ namespace Prototype1
         {
             try
             {
-                resetGraph();
                 if (B1)
                 {
                     Result.Content = "";
                     B1 = false;
                 }
 
-                B2 = true;
+                resetGraph();
                 quest = new Query(Query_Text.Text);
                 Next.IsEnabled = false;
 
@@ -250,7 +236,7 @@ namespace Prototype1
                 {
                     bool found2 = false;
                     List<int> res = new List<int>();
-                    String ans = quests.getMove(counter) + " " + quests.getTo(counter) + " " + quests.getFrom(counter);
+                    String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom();
                     Result.Content += ans;
                     recurseSolve(1, quest.getFrom(), ref found2, map, ref res);
                     solution = null;
@@ -275,7 +261,7 @@ namespace Prototype1
                 {
                     bool found3 = false;
                     List<int> res = new List<int>();
-                    String ans = quests.getMove(counter) + " " + quests.getTo(counter) + " " + quests.getFrom(counter);
+                    String ans = quest.getMove() + " " + quest.getTo() + " " + quest.getFrom();
                     Result.Content += ans;
                     recurseSolve(quest.getFrom(), quest.getTo(), ref found3, map, ref res);
                     solution = null;
@@ -351,8 +337,24 @@ namespace Prototype1
                 now = target;
                 checker = 0;
                 _timer.Start();
-                AutoClosingMessageBox.Show("Hijau " + now, "test1", 1000);
                 result.Add(target);
+
+                if (result.Count() != 0)
+                {
+                    nowpath = result[0].ToString();
+                }
+                else
+                {
+                    nowpath = "";
+                }
+
+                for (int j = 1; j < result.Count(); j++)
+                {
+                    nowpath += " -> " + result[j];
+                }
+
+                //AutoClosingMessageBox.Show("Hijau " + now, "Path", 1000);
+                AutoClosingMessageBox.Show(nowpath, "Path", 1000);
             }
             else if (neighbor == null)
             {
@@ -360,17 +362,50 @@ namespace Prototype1
                 prev = curr;
                 checker = 0;
                 _timer2.Start();
-                AutoClosingMessageBox.Show("Merah " + prev, "test2", 1000);
                 result.Remove(curr);
+
+                if (result.Count() != 0)
+                {
+                    prevpath = result[0].ToString();
+                }
+                else
+                {
+                    prevpath = "";
+                }
+
+                for (int j = 1; j < result.Count(); j++)
+                {
+                    prevpath += " -> " + result[j];
+                }
+
+                //AutoClosingMessageBox.Show("Merah " + prev, "Path", 1000);
+                AutoClosingMessageBox.Show(prevpath, "Path", 1000);
             }
             else
             {
                 now = curr;
                 checker = 0;
                 _timer.Start();
-                AutoClosingMessageBox.Show("Hijau " + now, "test3", 1000);
                 result.Add(curr);
+                
+                if (result.Count() != 0)
+                {
+                    nowpath = result[0].ToString();
+                }
+                else
+                {
+                    nowpath = "";
+                }
+
+                for (int j = 1; j < result.Count(); j++)
+                {
+                    nowpath += " -> " + result[j];
+                }
+
+                //AutoClosingMessageBox.Show("Hijau " + now, "Path", 1000);
+                AutoClosingMessageBox.Show(nowpath, "Path", 1000);
                 int i = 0;
+
                 while ((i < neighbor.Count) && (!found))
                 {
                     recurseSolve(neighbor[i], target, ref found, path, ref result);
@@ -381,8 +416,24 @@ namespace Prototype1
                     prev = curr;
                     checker = 0;
                     _timer2.Start();
-                    AutoClosingMessageBox.Show("Merah " + prev, "test4", 1000);
                     result.Remove(curr);
+
+                    if (result.Count() != 0)
+                    {
+                        prevpath = result[0].ToString();
+                    }
+                    else
+                    {
+                        prevpath = "";
+                    }
+
+                    for (int j = 1; j < result.Count(); j++)
+                    {
+                        prevpath += " -> " + result[j];
+                    }
+
+                    //AutoClosingMessageBox.Show("Merah " + prev, "Path", 1000);
+                    AutoClosingMessageBox.Show(prevpath, "Path", 1000);
                 }
             }
         }
