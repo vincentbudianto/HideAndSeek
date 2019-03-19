@@ -107,9 +107,9 @@ namespace Prototype1
                         Microsoft.Msagl.Drawing.Node from = graph.FindNode(str1);
                         Microsoft.Msagl.Drawing.Node to = graph.FindNode(str2);
 
-                        from.Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
+                        from.Attr.FillColor = Microsoft.Msagl.Drawing.Color.White;
                         from.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Circle;
-                        to.Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
+                        to.Attr.FillColor = Microsoft.Msagl.Drawing.Color.White;
                         to.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Circle;
                     }
                 }
@@ -297,8 +297,8 @@ namespace Prototype1
                 {
                     string str1 = i.ToString();
                     string str2 = map.getPath(i)[j].ToString();
-                    graph.FindNode(str1).Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
-                    graph.FindNode(str2).Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
+                    graph.FindNode(str1).Attr.FillColor = Microsoft.Msagl.Drawing.Color.White;
+                    graph.FindNode(str2).Attr.FillColor = Microsoft.Msagl.Drawing.Color.White;
                 }
             }
 
