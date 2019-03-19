@@ -22,22 +22,28 @@ namespace Prototype1
         AutoClosingMessageBox(string text, string caption, int timeout)
         {
             _caption = caption;
-            _timeoutTimer = new System.Threading.Timer(OnTimerElapsed,
-                null, timeout, System.Threading.Timeout.Infinite);
+            _timeoutTimer = new System.Threading.Timer(OnTimerElapsed, null, timeout, System.Threading.Timeout.Infinite);
             using (_timeoutTimer)
                 MessageBox.Show(text, caption);
         }
+		
         public static void Show(string text, string caption, int timeout)
         {
             new AutoClosingMessageBox(text, caption, timeout);
         }
+		
         void OnTimerElapsed(object state)
         {
             IntPtr mbWnd = FindWindow("#32770", _caption); // lpClassName is #32770 for MessageBox
+			
             if (mbWnd != IntPtr.Zero)
-                SendMessage(mbWnd, WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
-            _timeoutTimer.Dispose();
+            {
+				SendMessage(mbWnd, WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+            }
+			
+			_timeoutTimer.Dispose();
         }
+		
         const int WM_CLOSE = 0x0010;
         [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
         static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
@@ -72,6 +78,7 @@ namespace Prototype1
         }
 
         private void Open_Graph_Click(object sender, RoutedEventArgs e)
+		// Membuka window baru untuk mencari dan load file peta
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
@@ -85,6 +92,7 @@ namespace Prototype1
         }
 
         private void Load_Graph_Click(object sender, RoutedEventArgs e)
+		// Membuat graf satu arah dari file peta yang sudah diload sebelumnya
         {
             try
             {
@@ -113,6 +121,7 @@ namespace Prototype1
                         to.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Circle;
                     }
                 }
+				
                 this.gViewer.Graph = graph;
             }
             catch
@@ -122,6 +131,8 @@ namespace Prototype1
         }
 
         private void Open_Query_Click(object sender, RoutedEventArgs e)
+		// Membuka window baru untuk mencari dan load file query
+
         {
             OpenFileDialog openFileDialog2 = new OpenFileDialog();
             openFileDialog2.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
@@ -135,6 +146,7 @@ namespace Prototype1
         }
 
         private void Load_Query_Click(object sender, RoutedEventArgs e)
+		// Membaca file query yang sudah diload sebelumnya dan memulai proses untuk query pertama
         {
             try
             {
@@ -142,10 +154,8 @@ namespace Prototype1
                 quests = new ExQuery(dirExQuery);
                 Next.IsEnabled = true;
                 Result.Content = "";
-
                 Result.Content += "Total query = " + quests.getNum() + "\n";
                 counter = 0;
-
                 Next_Click(sender, e);
             }
             catch
@@ -155,8 +165,10 @@ namespace Prototype1
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
+		// Memulai proses untuk query selanjutnya
         {
             resetGraph();
+			
             if (quests.getMove(counter) == 0)
             {
                 bool found2 = false;
@@ -166,7 +178,6 @@ namespace Prototype1
                 recurseSolve(1, quests.getFrom(counter), ref found2, map, ref res);
                 solution = null;
                 solution = new List<int>(res);
-
 
                 if (!res.Contains(quests.getTo(counter)))
                 {
@@ -193,7 +204,6 @@ namespace Prototype1
                 solution = null;
                 solution = new List<int>(res);
 
-
                 if (found3)
                 {
                     AutoClosingMessageBox.Show("Solution Found", "Result", 1500);
@@ -219,6 +229,7 @@ namespace Prototype1
         }
 
         private void Enter_Query_Click(object sender, RoutedEventArgs e)
+		// Memulai proses untuk query dari pengguna
         {
             try
             {
@@ -290,6 +301,7 @@ namespace Prototype1
         }
 
         public void resetGraph()
+		// Mengembalikan graf ke wujud awal saat dibentuk
         {
             for (int i = 1; i < map.getHouses(); i++)
             {
@@ -305,10 +317,12 @@ namespace Prototype1
         }
 
         private void timer_Tick_Green(object sender, EventArgs e)
+		// Mengubah warna simpul menjadi hijau
         {
             graph.FindNode(now.ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.LightGreen;
             this.gViewer.Graph = graph;
             checker++;
+			
             if (checker >= 1)
             {
                 _timer.Stop();
@@ -316,10 +330,12 @@ namespace Prototype1
         }
 
         private void timer_Tick_Red(object sender, EventArgs e)
+		// Mengubah warna simpul menjadi merah
         {
             graph.FindNode(prev.ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.IndianRed;
             this.gViewer.Graph = graph;
             checker++;
+			
             if (checker >= 1)
             {
                 _timer2.Stop();
@@ -328,6 +344,7 @@ namespace Prototype1
 
 
         public void recurseSolve(int curr, int target, ref bool found, Graf path, ref List<int> result)
+		// Algoritma pencarian menggunakan DFS
         {
             List<int> neighbor = path.getPath(curr);
 
@@ -353,7 +370,6 @@ namespace Prototype1
                     nowpath += " -> " + result[j];
                 }
 
-                //AutoClosingMessageBox.Show("Hijau " + now, "Path", 1000);
                 AutoClosingMessageBox.Show(nowpath, "Path", 1000);
             }
             else if (neighbor == null)
@@ -378,7 +394,6 @@ namespace Prototype1
                     prevpath += " -> " + result[j];
                 }
 
-                //AutoClosingMessageBox.Show("Merah " + prev, "Path", 1000);
                 AutoClosingMessageBox.Show(prevpath, "Path", 1000);
             }
             else
@@ -402,7 +417,6 @@ namespace Prototype1
                     nowpath += " -> " + result[j];
                 }
 
-                //AutoClosingMessageBox.Show("Hijau " + now, "Path", 1000);
                 AutoClosingMessageBox.Show(nowpath, "Path", 1000);
                 int i = 0;
 
@@ -432,7 +446,6 @@ namespace Prototype1
                         prevpath += " -> " + result[j];
                     }
 
-                    //AutoClosingMessageBox.Show("Merah " + prev, "Path", 1000);
                     AutoClosingMessageBox.Show(prevpath, "Path", 1000);
                 }
             }

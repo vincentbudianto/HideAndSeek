@@ -23,6 +23,7 @@ namespace Prototype1
 
             // Initialize list
             paths = new List<int>[houses + 1];
+			
             for (int i = 1; i <= houses; i++)
             {
                 paths[i] = new List<int>();
@@ -55,6 +56,7 @@ namespace Prototype1
                 paths[i] = null;
                 GC.Collect();
             }
+			
             paths = null;
             GC.Collect();
         }
@@ -64,6 +66,7 @@ namespace Prototype1
         {
             return (paths[node]);
         }
+		
         public int getHouses()
         {
             return (houses);
@@ -72,7 +75,8 @@ namespace Prototype1
         // Other functions
         private void delReverse(int node)
         {
-            for (int i = 0; i < paths[node].Count; i++) {
+            for (int i = 0; i < paths[node].Count; i++)
+			{
                 paths[(paths[node][i])].Remove(node);
                 delReverse(paths[node][i]);
             }
@@ -82,6 +86,7 @@ namespace Prototype1
         {
             Console.WriteLine("Houses = {0}", houses);
             Console.WriteLine("Palace is connected to: ");
+
             for (int i = 1; i <= houses; i++)
             {
                 Console.Write(i + ": ");
@@ -91,22 +96,6 @@ namespace Prototype1
                 }
                 Console.WriteLine();
             }
-//             foreach (List<Int32> a in paths)
-//             {
-//                 //List<int> b = new List<int> (a);
-// //                Console.WriteLine(paths[1][1]);
-//                // Console.WriteLine("Count : " + a.Count);
-// //                 List<int> b = new List<int>(a);
-// //                 Console.WriteLine("TesterA");
-// //                 b.ForEach(Console.Write);
-// //                 Console.WriteLine();
-// //                 foreach (Int32 value in a)
-// //                 {
-// //                     Console.WriteLine("TesterB");
-// //                     Console.WriteLine(value);
-// //                     Console.WriteLine("TesterC");
-// //                 }
-//             } 
         }
     }
 }

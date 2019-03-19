@@ -27,11 +27,13 @@ namespace Prototype1
         {
             return move;
         }
+		
         public int getFrom()
         {
             return from;
         }
-        public int getTo()
+        
+		public int getTo()
         {
             return to;
         }
@@ -86,23 +88,28 @@ namespace Prototype1
         {
             return num_queries;
         }
+		
         public int getMove(int i)
         {
             return move[i];
         }
+		
         public int getFrom(int i)
         {
             return from[i];
         }
+		
         public int getTo(int i)
         {
             return to[i];
         }
 
         // fungsi lain
-        public void print() {
+        public void print()
+		{
             Console.WriteLine("Printing Queries...");
-            for (int i = 0; i < num_queries; i++)
+       
+			for (int i = 0; i < num_queries; i++)
             {
                 Console.WriteLine("Move = {0}, From = {1}, To = {2}", move[i], from[i], to[i]);
             }
